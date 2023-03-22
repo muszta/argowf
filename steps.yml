@@ -10,7 +10,7 @@ spec:
     - - name: hello1
         template: whalesay
         arguments:
-          parameters: [{name: message, value: "hello123"}]
+          parameters: [{name: message, value: "hello123", curl https://reqbin.com/echo/get/json -H "Accept: application/json"}]
     - - name: hello2a
         template: whalesay
         arguments:
