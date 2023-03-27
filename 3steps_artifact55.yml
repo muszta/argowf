@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: steps-
+spec:
+  entrypoint: hello-hello-hello
+  templates:
+  - name: hello-hello-hello
+    steps:
+    - - name: download-with-curl
+        template: curl
+    - - name: write-to-console
+        template: whalesayhello
+        arguments:
+          parameters: [{name: message, value: "hello2a"}]
+      - name: generate-artifact
+        template: whalesayartifact  
+
+  - name: curl
+    script:
+      image: debian:9.4
+      command: [bash]
+      source: |
+        echo 'Hello world'
+         
+        
+  - name: whalesayhello
+    inputs:
+      parameters:
+      - name: message
+    container:
+      image: docker/whalesay
+      command: [cowsay]
+      args: ["{{inputs.parameters.message}}"]
+
+  - name: whalesayartifact
+    container:
+      image: docker/whalesay:latest
+      command: [sh, -c]
+      args: ["cowsay hello world | tee /tmp/hello_world.txt"]
+    outputs:
+      artifacts:
+      # generate hello-art artifact from /tmp/hello_world.txt
+      # artifacts can be directories as well as files
+      - name: hello-art
+        path: /tmp/hello_world.txt
+  
