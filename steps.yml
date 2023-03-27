@@ -23,7 +23,10 @@ spec:
         template: whalesay
         arguments:
           parameters: [{name: message, value: "helloasd"}]    
-
+      - - name: hello3
+        template: whalesay
+        arguments:
+          parameters: [{name: message, value: "hello3"}]
   - name: whalesay
     inputs:
       parameters:
