@@ -7,11 +7,11 @@ spec:
   templates:
   - name: hello-hello-hello
     steps:
-    - - name: download_with_curl
+    - - name: download-with-curl
         template: curl
         arguments:
           parameters: [{name: message, value: "hello1"}]
-    - - name: write_to_console
+    - - name: write-to-console
         template: whalesayhello
         arguments:
           parameters: [{name: message, value: "hello2a"}]
