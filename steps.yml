@@ -19,6 +19,10 @@ spec:
         template: whalesay
         arguments:
           parameters: [{name: message, value: "hello2bdce"}]
+      - name: hello2c
+        template: whalesay
+        arguments:
+          parameters: [{name: message, value: "helloasd"}]    
 
   - name: whalesay
     inputs:
